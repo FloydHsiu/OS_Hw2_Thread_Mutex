@@ -20,4 +20,6 @@ public:
 private:
 	node *dic[26];
 	node *root;
+	node *tail;
+	node *pop_index;//use to mantain the stack pop without change the root.
 }

@@ -2,11 +2,14 @@
 #include <fstream>
 #include <string>
 #include <pthread.h>
+#include "Stack.h"
 
 using namespace std;
 
 pthread_t threads[3];
 pthread_mutex_t mutex_sum;
+
+Stack *word_stack = new Stack();
 
 void *openfile(void *params);
 bool IsInaWord(char c);
@@ -27,6 +30,12 @@ int main(int argc, char* argv[]){
 	pthread_join(threads[1], NULL);
 	pthread_join(threads[2], NULL);
 
+	for(int i=0; i < 4 ; i++){
+		node* a = word_stack->pop();
+		string *temp = a->word;
+		cout << *temp << " " << a->times << endl;
+	}
+
 }
 
 void *openfile(void *params){
@@ -44,7 +53,7 @@ void *openfile(void *params){
 				temp->push_back(c);
 				fp.get(c);
 				if(!IsInaWord(c)){
-					cout << *temp << endl;
+					word_stack->push(temp);
 					temp = new string("");
 				}
 			}
