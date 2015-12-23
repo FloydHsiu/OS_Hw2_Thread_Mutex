@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Stack.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ Stack::Stack(){
 bool Stack::push(string *input){
 	node* temp = root;
 	node* new_node;
-	while(!temp == NULL){
+	while(!(temp == NULL)){
 		if(temp->word->compare(*input) == 0){
 			temp->times++;
 			return true;
@@ -35,7 +36,7 @@ bool Stack::push(string *input){
 	return true;
 }
 
-node* pop(){
+node* Stack::pop(){
 	node* temp = root;
 	if(temp != NULL){
 		root = root->next;
@@ -45,5 +46,6 @@ node* pop(){
 	else{
 		temp = new node;
 		temp->times = -1;
+		return temp;
 	}
 }
