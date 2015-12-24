@@ -9,7 +9,7 @@ struct node{
 	struct node *next;
 };
 
-typedef struct node node;
+typedef struct node stack_node;
 
 class Stack{
 public:
