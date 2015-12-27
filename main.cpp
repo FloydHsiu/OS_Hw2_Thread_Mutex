@@ -3,6 +3,7 @@
 #include <string>
 #include <pthread.h>
 #include "Stack.h"
+#include "BST.h"
 
 using namespace std;
 
@@ -19,8 +20,13 @@ void insertAllWords(ifstream &infile);
 int main(int argc, char* argv[]){
 	pthread_attr_t attr;
 
+	BST *tree = new BST();
+	string *temp_s;
+	int times;
+
 	pthread_mutex_init(&mutex_sum, NULL);
 	pthread_attr_init(&attr);
+
 
 	for(int i=0 ; i< argc-1 ; i++){
 		pthread_create(&threads[i], &attr, openfile, argv[i+1]);
@@ -30,11 +36,16 @@ int main(int argc, char* argv[]){
 	pthread_join(threads[1], NULL);
 	pthread_join(threads[2], NULL);
 
-	for(int i=0; i < 4 ; i++){
-		node* a = word_stack->pop();
-		string *temp = a->word;
-		cout << *temp << " " << a->times << endl;
+	stack_node *temp = word_stack->pop();
+	while(temp->times != -1){
+		temp_s = temp->word;
+		times = temp->times;
+		tree->insert(temp_s, times);
+		temp = word_stack->pop();
 	}
+
+	tree->printBST();
+	
 
 }
 

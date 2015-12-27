@@ -1,8 +1,37 @@
 #include <iostream>
 #include <string>
-#include "Stack.h"
+#include "BST.h"
+#include <fstream>
 
 using namespace std;
+
+BST::BST(){
+	root = NULL;
+}
+
+void BST::insert(string *s, int times){
+	tree_node *temp = new tree_node;
+	temp->word = s;
+	temp->times = times;
+	temp->left = NULL;
+	temp->right = NULL;
+	temp->dic_left = NULL;
+	temp->dic_right = NULL;
+	root = InsertRecursion(root, temp);
+}
+
+tree_node* BST::InsertRecursion(tree_node *node, tree_node *new_node){
+	if(node == NULL){
+			return new_node;
+	}
+	if(times_string_compare(new_node, node)){
+		node->right = InsertRecursion(node->right, new_node);
+	}
+	else{
+		node->left = InsertRecursion(node->left, new_node);
+	}
+	return node;
+}
 
 
 bool BST::times_string_compare(tree_node *n1, tree_node *n2){ // bigger return true
@@ -53,4 +82,22 @@ bool BST::string_compare(tree_node *n1, tree_node *n2){ // 擺前面 return true
 			return false;
 		}
 	}
+}
+
+
+
+void BST::printBST(tree_node *node, ofstream &fp){
+	if(node==NULL)
+	{
+		return;
+	}
+    printBST(node->right, fp);
+    fp << *(node->word) << " " << node->times << endl;
+    printBST(node->left, fp);
+}
+
+void BST::printBST(){
+	ofstream fp;
+	fp.open("output.txt");
+	this->printBST(root, fp);
 }

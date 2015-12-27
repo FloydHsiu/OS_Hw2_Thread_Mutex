@@ -1,5 +1,5 @@
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -19,9 +19,13 @@ typedef struct tree_node tree_node;
 class BST{
 public:
 	BST();
-	void insert();
+	void insert(string *s, int times);
+	void printBST();
+
 private:
-	tree_node *root;
+	tree_node* root;
+	tree_node* InsertRecursion(tree_node *node, tree_node *new_node);
 	static bool times_string_compare(tree_node *n1, tree_node *n2);
 	static bool string_compare(tree_node *n1, tree_node *n2);
-}
+	void printBST(tree_node *node, ofstream &fp);
+};
