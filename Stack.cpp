@@ -16,13 +16,15 @@ bool Stack::push(string *input){
 	stack_node* temp = root;
 	stack_node* new_node;
 
+	//check if the string is exist, if exist -> times++ and return, else create a new stack_node
+
 	while(!(temp == NULL)){
 		if(temp->word->compare(*input) == 0){
 			temp->times++;
 			return true;
 		}
 		temp = temp->next;
-	}//check if the string is exist, if exist -> times++ and return, else create a new stack_node
+	}
 
 	new_node = new stack_node;
 	new_node->word = input;
@@ -109,12 +111,14 @@ void Stack::_push(string *input){
 }
 
 void Stack::insert(stack_node *front, stack_node *new_node){
+	//將一個新的node插在front後面
 	stack_node *temp = front->next;
 	front->next = new_node;
 	new_node->next = temp;
 }
 
 int Stack::next_not_null_dic(int index){
+	//找出當下index之後第一個不是NULL的
 	index++;
 	while(index < 26){
 		if(dic[index] != NULL){
@@ -126,6 +130,7 @@ int Stack::next_not_null_dic(int index){
 }
 
 int Stack::front_not_null_dic(int index){
+	//找出當下index往前第一個非NULL
 	index--;
 	while(index > -1){
 		if(dic[index] != NULL){
@@ -137,6 +142,7 @@ int Stack::front_not_null_dic(int index){
 }
 
 stack_node* Stack::get_front_tail(stack_node* start, stack_node *end){
+	//取前方第一個非NULL的end
 	stack_node *temp = start;
 	while(temp->next != end){
 		temp = temp->next;

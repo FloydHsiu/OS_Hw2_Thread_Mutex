@@ -68,7 +68,7 @@ void *openfile(void *params){
 						
 					}
 					else if(temp->at(0) == '\''){
-						
+
 					}
 					else{
 						word_stack->_push(temp);
