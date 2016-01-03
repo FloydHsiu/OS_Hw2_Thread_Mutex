@@ -15,11 +15,11 @@ class Stack{
 public:
 	Stack();
 	bool push(string *input);
-	node* pop();
+	stack_node* pop();
 
 private:
-	node *dic[26];
-	node *root;
-	node *tail;
-	node *pop_index;//use to mantain the stack pop without change the root.
+	stack_node *dic[26];
+	stack_node *root;
+	stack_node *tail;
+	stack_node *pop_index;//use to mantain the stack pop without change the root.
 };

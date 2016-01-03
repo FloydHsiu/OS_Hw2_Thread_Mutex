@@ -36,6 +36,10 @@ bool Stack::push(string *input){
 	return true;
 }
 
+bool Stack::_push(string *input){
+	stack_node
+}
+
 stack_node* Stack::pop(){
 	stack_node* temp = root;
 	if(temp != NULL){
