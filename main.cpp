@@ -64,11 +64,15 @@ void *openfile(void *params){
 				temp->push_back(c);
 				fp.get(c);
 				if(!IsInaWord(c)){
-					if(temp->compare("\'")){//only ' is not a word
+					if(!(temp->compare("\'"))){//only ' is not a word
 						
 					}
+					else if(temp->at(0) == '\''){
+						temp->erase(0,1);
+						word_stack->_push(temp);
+					}
 					else{
-						word_stack->push(temp);
+						word_stack->_push(temp);
 					}
 					temp = new string("");
 				}

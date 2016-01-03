@@ -16,8 +16,14 @@ public:
 	Stack();
 	bool push(string *input);
 	stack_node* pop();
+	void _push(string *input);
+	void insert(stack_node *front, stack_node *new_node);
+	int next_not_null_dic(int index);
+	int front_not_null_dic(int index);
+	stack_node* get_front_tail(stack_node* start, stack_node *end);
 
 private:
+	stack_node *dic[26];
 	stack_node *root;
 	stack_node *tail;
 };
