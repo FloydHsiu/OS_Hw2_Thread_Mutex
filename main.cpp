@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 	pthread_join(threads[2], NULL);
 
 	stack_node *temp = word_stack->pop();
-	while(temp->times != -1){
+	while(temp != NULL){
 		temp_s = temp->word;
 		times = temp->times;
 		tree->insert(temp_s, times);
@@ -57,14 +57,19 @@ void *openfile(void *params){
 	if(fp.is_open()){
 		while(fp){
 			pthread_mutex_lock (&mutex_sum);
-			//
+			//執行到這裡讓其他thread暫停，等待這邊執行，以防止衝突
 			fp.get(c);
 			while(IsInaWord(c)){
 				c = ToLowerCase(c);
 				temp->push_back(c);
 				fp.get(c);
 				if(!IsInaWord(c)){
-					word_stack->push(temp);
+					if(temp->compare("\'")){//only ' is not a word
+						
+					}
+					else{
+						word_stack->push(temp);
+					}
 					temp = new string("");
 				}
 			}
