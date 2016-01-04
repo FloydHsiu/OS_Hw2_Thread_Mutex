@@ -176,3 +176,15 @@ stack_node* Stack::_pop(){
 		return NULL;
 	}
 }
+
+stack_node* Stack::_search(string *input){
+	//搜尋某個字出現的次數
+	stack_node *temp = root;
+	while(temp!=NULL){
+		if(temp->word->compare(*input) == 0){
+			return temp;
+		}
+		temp = temp->next;
+	}
+	return NULL;
+}

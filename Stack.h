@@ -18,6 +18,7 @@ public:
 	stack_node* pop();
 	void _push(string *input);
 	stack_node* _pop();
+	stack_node* _search(string* input);
 
 private:
 	void insert(stack_node *front, stack_node *new_node);

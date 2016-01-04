@@ -45,9 +45,37 @@ int main(int argc, char* argv[]){
 		tree->insert(temp_s, times);
 		temp = word_stack->_pop();
 	}
-
 	tree->printBST();
 	
+	int mode = 1;
+	while(mode){
+		cout << endl <<"已完成資料的分析！請選擇你要的操作以繼續進行" << endl;
+		cout << "(1)將結果印到terminal上" << endl;
+		cout << "(2)將結果存到output.txt裡" << endl;
+		cout << "(3)搜尋某個字詞出現的次處" << endl;
+		cin >> mode;
+		if(mode == 1){
+			tree->printBST_terminal();
+		}
+		else if(mode == 2){
+			tree->printBST();
+		}
+		else if(mode == 3){
+			string temp;
+			cout << "請輸入你要搜尋的字詞:";
+			cin >> temp;
+			stack_node *temp_node = word_stack->_search(&temp);
+			if(temp_node != NULL){
+				cout << *(temp_node->word) << " " << temp_node->times << endl;
+			}
+			else{
+				cout << "This word is not exist!" << endl;
+			}
+		}
+		else{
+			cout << "你輸入錯誤的操作, 程式終止" << endl;
+		}
+	}
 
 }
 

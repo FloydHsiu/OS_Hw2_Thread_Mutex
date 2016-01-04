@@ -21,6 +21,7 @@ public:
 	BST();
 	void insert(string *s, int times);
 	void printBST();
+	void printBST_terminal();
 
 private:
 	tree_node* root;
@@ -28,4 +29,5 @@ private:
 	static bool times_string_compare(tree_node *n1, tree_node *n2);
 	static bool string_compare(tree_node *n1, tree_node *n2);
 	void printBST(tree_node *node, ofstream &fp);
+	void printBST_terminal(tree_node *node);
 };

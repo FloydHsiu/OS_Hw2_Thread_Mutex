@@ -87,6 +87,7 @@ bool BST::string_compare(tree_node *n1, tree_node *n2){ // 擺前面 return true
 
 
 void BST::printBST(tree_node *node, ofstream &fp){
+	//印在output.txt
 	if(node==NULL)
 	{
 		return;
@@ -100,4 +101,20 @@ void BST::printBST(){
 	ofstream fp;
 	fp.open("output.txt");
 	this->printBST(root, fp);
+	fp.close();
+}
+
+void BST::printBST_terminal(tree_node *node){
+	//印在terminal
+	if(node==NULL)
+	{
+		return;
+	}
+    printBST_terminal(node->right);
+    cout << *(node->word) << " " << node->times << endl;
+    printBST_terminal(node->left);
+}
+
+void BST::printBST_terminal(){
+	this->printBST_terminal(root);
 }
