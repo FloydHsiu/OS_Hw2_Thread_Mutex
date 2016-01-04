@@ -73,6 +73,7 @@ int main(int argc, char* argv[]){
 			}
 		}
 		else{
+			mode = 0;
 			cout << "你輸入錯誤的操作, 程式終止" << endl;
 		}
 	}
