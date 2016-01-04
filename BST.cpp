@@ -34,15 +34,15 @@ tree_node* BST::InsertRecursion(tree_node *node, tree_node *new_node){
 }
 
 
-bool BST::times_string_compare(tree_node *n1, tree_node *n2){ // bigger return true
-	if(n1->times > n2->times){
+bool BST::times_string_compare(tree_node *n1, tree_node *n2){ // 擺前面 return true
+	if(n1->times > n2->times){ // time大者擺前面
 		return true;
 	}
 	else if(n1->times < n2->times){
 		return false;
 	}
 	else{
-		return string_compare(n1,n2);
+		return string_compare(n1,n2); // time相同者比較Word的次序
 	}
 }
 

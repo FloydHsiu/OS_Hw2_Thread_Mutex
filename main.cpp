@@ -8,7 +8,7 @@
 using namespace std;
 
 pthread_t threads[3];
-pthread_mutex_t mutex_sum;
+pthread_mutex_t mutex_sum;//利用mutex去防止資料取用時的衝突
 
 Stack *word_stack = new Stack();
 
@@ -29,6 +29,7 @@ int main(int argc, char* argv[]){
 
 
 	for(int i=0 ; i< argc-1 ; i++){
+		//建立thread
 		pthread_create(&threads[i], &attr, openfile, argv[i+1]);
 	}
 
@@ -36,12 +37,13 @@ int main(int argc, char* argv[]){
 	pthread_join(threads[1], NULL);
 	pthread_join(threads[2], NULL);
 
-	stack_node *temp = word_stack->pop();
+	//將統計完次數的node由stack中取出，並且insert到BST中
+	stack_node *temp = word_stack->_pop();
 	while(temp != NULL){
 		temp_s = temp->word;
 		times = temp->times;
 		tree->insert(temp_s, times);
-		temp = word_stack->pop();
+		temp = word_stack->_pop();
 	}
 
 	tree->printBST();
@@ -80,7 +82,7 @@ void *openfile(void *params){
 		}
 	}
 	else{
-
+		cout << "Fail to open the file!" << endl;
 	}
 	fp.close();
 	pthread_exit(0);

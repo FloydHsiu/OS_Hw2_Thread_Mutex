@@ -10,6 +10,7 @@ Stack::Stack(){
 	}
 	root = NULL;
 	tail = NULL;
+	pop_root = NULL;
 }
 
 bool Stack::push(string *input){
@@ -105,6 +106,7 @@ void Stack::_push(string *input){
 			root = new_node;
 			root->next = end;
 			dic[index] = new_node;//記錄進表中
+			pop_root = root;//pop_root 需和 root相同
 			return ;
 		}
 	}
@@ -155,6 +157,19 @@ stack_node* Stack::pop(){
 	if(temp != NULL){
 		root = root->next;
 		temp->next = NULL;
+		return temp;
+	}
+	else{
+		return NULL;
+	}
+}
+
+stack_node* Stack::_pop(){
+	//針對最後可以輸入單字並搜尋次數的功能，對於pop所做的特化
+	//以不更動原始root的方式取值
+	stack_node* temp = pop_root;
+	if(temp != NULL){
+		pop_root = pop_root->next;
 		return temp;
 	}
 	else{
